@@ -50,20 +50,23 @@ export default function ProductsPage() {
           ? product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             (product.description?.toLowerCase().includes(searchQuery.toLowerCase()) || false)
           : true;
-        return matchesSearch;
+        const matchesCategory = selectedCategory && selectedCategory !== "all"
+          ? product.categoryId === categories?.find(c => c.slug === selectedCategory)?.id
+          : true;
+        return matchesSearch && matchesCategory;
       })
     : [];
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     switch (sortBy) {
       case "newest":
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        return new Date(b.createdAt || Date.now()).getTime() - new Date(a.createdAt || Date.now()).getTime();
       case "price-low":
         return a.price - b.price;
       case "price-high":
         return b.price - a.price;
       case "popularity":
-        return b.reviewCount - a.reviewCount;
+        return (b.reviewCount || 0) - (a.reviewCount || 0);
       default:
         return 0;
     }
@@ -149,7 +152,7 @@ export default function ProductsPage() {
                 <SelectValue placeholder="All categories" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All categories</SelectItem>
+                <SelectItem value="all">All categories</SelectItem>
                 {categories?.map((category) => (
                   <SelectItem key={category.id} value={category.slug}>
                     {category.name}
@@ -225,7 +228,7 @@ export default function ProductsPage() {
             We couldn't find any products matching your current filters. Try adjusting your search or browse our categories.
           </p>
           <Button onClick={() => {
-            setSelectedCategory("");
+            setSelectedCategory("all");
             setSearchQuery("");
           }}>
             Clear Filters
