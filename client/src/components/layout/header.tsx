@@ -108,7 +108,7 @@ export default function Header() {
             </Button>
             
             {/* Theme Toggle */}
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             
             {user ? (
               <DropdownMenu>

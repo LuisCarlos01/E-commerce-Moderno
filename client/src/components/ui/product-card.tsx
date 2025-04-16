@@ -83,8 +83,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative aspect-square overflow-hidden">
-        <Link href={`/products/${id}`}>
-          <a className="block">
+        <Link href={`/products/${id}`} className="block">
             <motion.img
               src={imageUrl}
               alt={name}
@@ -93,7 +92,6 @@ export default function ProductCard({ product }: ProductCardProps) {
               animate={{ scale: isHovered ? 1.08 : 1 }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
             />
-          </a>
         </Link>
         
         {/* Overlay with product actions */}
@@ -164,7 +162,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                     custom={2}
                   >
                     <Link href={`/products/${id}`}>
-                      <a>
                         <Button
                           size="icon"
                           variant="secondary"
@@ -172,7 +169,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                         >
                           <Eye className="h-4 w-4" />
                         </Button>
-                      </a>
                     </Link>
                   </motion.div>
                 </TooltipTrigger>
@@ -231,10 +227,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <CardContent className="p-4">
         <div className="flex justify-between items-start mb-2">
-          <Link href={`/products/category/${categoryId}`}>
-            <a className="text-muted-foreground text-xs bg-secondary/10 hover:bg-secondary/20 px-2 py-1 rounded-md transition-colors">
+          <Link href={`/products/category/${categoryId}`} className="text-muted-foreground text-xs bg-secondary/10 hover:bg-secondary/20 px-2 py-1 rounded-md transition-colors">
               {getCategoryName(categoryId)}
-            </a>
           </Link>
           
           <div className="flex items-center">
@@ -245,12 +239,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
         
-        <Link href={`/products/${id}`}>
-          <a className="block">
+        <Link href={`/products/${id}`} className="block">
             <h3 className="font-semibold text-lg mb-1 hover:text-primary transition-colors line-clamp-2 h-14">
               {name}
             </h3>
-          </a>
         </Link>
         
         <div className="mt-3 flex items-end justify-between">
