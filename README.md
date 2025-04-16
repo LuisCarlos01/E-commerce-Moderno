@@ -1,109 +1,137 @@
-# NexaShop - E-commerce Platform
+# 🛒 NexaShop – Plataforma Moderna de E-commerce
 
-Um moderno e-commerce com tema escuro, integração com Stripe, autenticação de usuários e painel de administração.
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 
-## Tecnologias Utilizadas
+**NexaShop** é uma plataforma completa de e-commerce com tema escuro, integração de pagamentos via Stripe, painel administrativo, carrinho de compras, autenticação de usuários e muito mais. Um projeto robusto e moderno, inspirado nas melhores experiências de compra online.
+
+---
+
+## 🚀 Tecnologias Utilizadas
 
 - **Frontend**: React, TailwindCSS, Shadcn UI, Framer Motion
 - **Backend**: Node.js, Express
-- **Banco de Dados**: PostgreSQL (opcional, configuração em memória disponível)
+- **Banco de Dados**: PostgreSQL (opcional, modo em memória disponível)
 - **Pagamentos**: Stripe
+- **Validações**: Zod
+- **ORM**: Drizzle ORM
+- **Estado Global**: React Context API + React Query
+- **Animações**: Framer Motion
+- **Design Responsivo**: Mobile First com Tailwind
 
-## Requisitos
+---
 
-- Node.js 18+ 
+## 📦 Requisitos
+
+- Node.js 18+
 - NPM ou Yarn
-- Conta no Stripe para processamento de pagamentos (opcional)
+- Conta no Stripe (para habilitar pagamentos)
 
-## Configuração Inicial
+---
+
+## ⚙️ Configuração Inicial
 
 1. Clone o repositório:
-   ```
-   git clone <url-do-repositorio>
+   ```bash
+   git clone https://github.com/LuisCarlos01/nexashop.git
    cd nexashop
    ```
 
 2. Instale as dependências:
-   ```
+   ```bash
    npm install
    ```
 
 3. Configure as variáveis de ambiente:
-   - Crie um arquivo `.env` na raiz do projeto
-   - Adicione as seguintes variáveis:
-     ```
-     # Stripe (opcional, apenas se for utilizar pagamentos)
-     STRIPE_SECRET_KEY=sk_test_...
-     VITE_STRIPE_PUBLIC_KEY=pk_test_...
-     
-     # Sessão (gerado automaticamente se não fornecido)
-     SESSION_SECRET=alguma_string_secreta_aleatoria
-     ```
 
-## Execução do Projeto
+   Crie um arquivo `.env` na raiz e adicione:
 
-```
+   ```env
+   # Stripe
+   STRIPE_SECRET_KEY=sk_test_...
+   VITE_STRIPE_PUBLIC_KEY=pk_test_...
+
+   # Sessão
+   SESSION_SECRET=alguma_string_secreta_aleatoria
+   ```
+
+---
+
+## ▶️ Execução do Projeto
+
+```bash
 npm run dev
 ```
 
-O servidor será iniciado em `http://localhost:5000`.
+O servidor estará disponível em `http://localhost:5000`.
 
-## Estrutura do Projeto
+---
+
+## 🧱 Estrutura do Projeto
 
 ```
 /
-├── client/          # Código frontend em React
-│   ├── src/
-│   │   ├── components/  # Componentes React reutilizáveis
-│   │   ├── hooks/       # React hooks personalizados
-│   │   ├── lib/         # Utilitários e funções auxiliares
-│   │   ├── pages/       # Páginas da aplicação
-│   │   └── App.tsx      # Componente principal e rotas
-├── server/          # Código backend em Express
-│   ├── auth.ts      # Autenticação de usuários
-│   ├── index.ts     # Entrada da aplicação
-│   ├── routes.ts    # Rotas da API
-│   ├── storage.ts   # Interface para armazenamento de dados
-│   └── vite.ts      # Configuração do Vite para servidor
-├── shared/          # Código compartilhado entre frontend e backend
-│   └── schema.ts    # Esquema de dados e validações
-└── theme.json       # Configuração de tema
+├── client/           # Frontend React
+│   └── src/
+│       ├── components/
+│       ├── hooks/
+│       ├── lib/
+│       ├── pages/
+│       └── App.tsx
+├── server/           # Backend Node.js/Express
+│   ├── auth.ts
+│   ├── index.ts
+│   ├── routes.ts
+│   ├── storage.ts
+│   └── vite.ts
+├── shared/           # Código compartilhado
+│   └── schema.ts
+└── theme.json        # Configuração de tema
 ```
 
-## Funcionalidades Principais
+---
 
-1. **Autenticação**: Sistema completo de login e registro
-2. **Catálogo de Produtos**: Listagem, filtros, detalhes
-3. **Carrinho de Compras**: Adição, remoção, atualização de quantidades
-4. **Checkout**: Integração com Stripe para pagamentos
-5. **Tema Claro/Escuro**: Alternância entre temas
-6. **Responsivo**: Adaptado para dispositivos móveis, tablets e desktop
-7. **Animações**: Efeitos visuais avançados com Framer Motion
-8. **Visualização Rápida**: Modal com detalhes do produto
+## ✨ Funcionalidades
 
-## Características Técnicas
+- ✅ Autenticação de usuários (login, registro, sessões)
+- ✅ Catálogo com filtros e visualização rápida
+- ✅ Carrinho de compras dinâmico
+- ✅ Checkout com integração Stripe
+- ✅ Painel administrativo para gerenciamento de produtos
+- ✅ Tema claro/escuro com alternância em tempo real
+- ✅ Design moderno, responsivo e com animações suaves
+- ✅ Tipagem completa com TypeScript
 
-- **Estado Global**: React Context API e React Query para gerenciamento de estado
-- **Validação de Formulários**: Zod para validação de esquemas
-- **Estilização**: TailwindCSS para estilos responsivos
-- **Componentes UI**: Sistema de design com Shadcn UI
-- **Código Tipado**: TypeScript em todo o projeto
-- **Armazenamento**: Memória (padrão) ou PostgreSQL com Drizzle ORM
+---
 
-## Chaves do Stripe
+## 💳 Chaves do Stripe
 
-Para utilizar processamento de pagamentos:
+1. Crie sua conta em [stripe.com](https://stripe.com)
+2. Copie suas chaves de teste:
+   - `VITE_STRIPE_PUBLIC_KEY` (pk_test_...)
+   - `STRIPE_SECRET_KEY` (sk_test_...)
+3. Cole no `.env`
 
-1. Crie uma conta em [stripe.com](https://stripe.com)
-2. Obtenha suas chaves de teste no painel do Stripe:
-   - `VITE_STRIPE_PUBLIC_KEY`: Começa com `pk_test_`
-   - `STRIPE_SECRET_KEY`: Começa com `sk_test_`
-3. Adicione estas chaves ao arquivo `.env`
+---
 
-## Contribuição
+## 🤝 Contribuição
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+Contribuições são muito bem-vindas!  
+Você pode abrir uma issue ou enviar um pull request.
 
-## Licença
+---
 
-MIT
+## 👨‍💻 Autor
+
+Desenvolvido com 💜 por **Luis Carlos**  
+[GitHub](https://github.com/LuisCarlos01) | [LinkedIn](https://www.linkedin.com/in/luizcarloss/)
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a licença MIT.
