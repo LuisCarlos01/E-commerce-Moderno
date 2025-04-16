@@ -33,6 +33,9 @@ export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState<string>(
     searchParams.get("search") || ""
   );
+  const [isFeatured, setIsFeatured] = useState<boolean>(
+    searchParams.get("featured") === "true"
+  );
   const [sortBy, setSortBy] = useState<string>("newest");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -41,6 +44,7 @@ export default function ProductsPage() {
   const { data: categories, isLoading: isLoadingCategories } = useCategories();
   const { data: allProducts, isLoading: isLoadingProducts } = useProducts({
     category: selectedCategory || undefined,
+    featured: isFeatured,
   });
 
   // Apply client-side filtering and sorting
@@ -123,10 +127,16 @@ export default function ProductsPage() {
       {/* Page Title */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold">
-          {selectedCategory ? getCategoryName(selectedCategory) : "All Products"}
+          {isFeatured 
+            ? "Featured Products" 
+            : selectedCategory && selectedCategory !== "all" 
+              ? getCategoryName(selectedCategory) 
+              : "All Products"}
         </h1>
         <p className="text-muted-foreground mt-2">
-          Discover our collection of high-quality products
+          {isFeatured 
+            ? "Discover our collection of trending and popular products"
+            : "Discover our collection of high-quality products"}
         </p>
       </div>
 
@@ -230,6 +240,7 @@ export default function ProductsPage() {
           <Button onClick={() => {
             setSelectedCategory("all");
             setSearchQuery("");
+            setIsFeatured(false);
           }}>
             Clear Filters
           </Button>
